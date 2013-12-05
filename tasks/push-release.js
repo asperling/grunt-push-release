@@ -100,11 +100,11 @@ module.exports = function(grunt) {
           var currentBranch = stdout.trim();
           var rBranches = (typeof opts.releaseBranch == 'string') ? [opts.releaseBranch] : opts.releaseBranch;
 
-          rBranches.forEach(function(rBranch) {
-            if (rBranch == currentBranch) {
+          for (var i = rBranches.length - 1; i >= 0; i--) {
+            if (rBranches[i] === currentBranch) {
               return next();
             }
-          });
+          }
 
           grunt.warn('The current branch is not in the list of release branches.');
 
